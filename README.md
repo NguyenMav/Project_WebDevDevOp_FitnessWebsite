@@ -1,6 +1,6 @@
 **Web Development Project**
 
-This is a personal practice project for web development where I try to apply everything I learned in my university web development unit.
+This is a personal practice project for web development where I try to apply everything I learned in my university web development unit. This project used **HTML, CSS, JavaScript, NodeJS, SQLite**
 
 The package.JSON and package-lock.JSON can be deleted if you want, as long as you run 'npm unit'.
 
