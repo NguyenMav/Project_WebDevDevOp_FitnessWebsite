@@ -2,6 +2,8 @@
 
 This is a personal practice project for web development where I try to apply everything I learned in my university web development unit.
 
+The package.JSON and package-lock.JSON can be deleted if you want, as long as you run 'npm unit'.
+
 **Instructions**
 
 1. Download all the files in to whatever directory you like.
