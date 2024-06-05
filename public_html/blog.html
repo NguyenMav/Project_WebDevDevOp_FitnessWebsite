@@ -1,0 +1,294 @@
+<!-- blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maverick Nguyen">
+    <meta name="description" content="Blog webpage showing different blogs related to fitness">
+    <title>Blog</title>
+
+    <!--Linked to style.css file-->
+    <link rel="stylesheet" href="style.css">
+    <!--Linked to the Bootstrap files-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Maverick's Fitness Coaching</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coaching.html">Coaching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="merchandise.html">Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <!-- Search form -->
+                <form class="d-flex" id="searchForm" onsubmit="handleSearch(event)">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-heading">The Guide To Unlimited Gains</h1>
+            <p class="hero-subheading">Your ultimate destination for fitness, diet and workout tips</p>
+        </div>
+    </div>
+    <!-- Blog Content -->
+    <div class="container mt-4">
+        <div class="row">
+        <!-- Main Blog Section (75% width) -->
+            <div class="col-md-9">
+                <h1>Blogs</h1>
+                <br>
+                <br>
+                <!-- Blog Post 1: Hypertrophy -->
+                <div id="hypertrophy">
+                    <h3>Maximizing Muscle Growth: Understanding Hypertrophy</h3>
+                    <p id="Update">Last Updated: April 24, 2024</p>
+                    <p>
+                        <strong>Hypertrophy</strong>, often referred to as muscle growth, is a key goal for many individuals engaged in strength training and bodybuilding. Understanding the principles behind hypertrophy is essential for optimizing your workouts and achieving your desired physique.
+                    </p>
+                    <br>
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li><strong>Muscle Hypertrophy Types:</strong> sarcoplasmic hypertrophy and myofibrillar hypertrophy. Sarcoplasmic hypertrophy refers to an increase in the volume of fluid within the muscle cells, while myofibrillar hypertrophy involves an increase in the size and number of myofibrils, the contractile units of muscle fibers.</li>
+                        <br>
+                        <li><strong>Training for Hypertrophy:</strong> To stimulate muscle growth, it's important to incorporate a combination of high-volume resistance training, moderate to high intensity, and adequate rest periods between sets. Exercises that target multiple muscle groups and allow for progressive overload, such as squats, deadlifts, bench presses, and rows, are particularly effective for inducing hypertrophy.</li>
+                        <br>
+                        <li><strong>Nutrition and Hypertrophy:</strong> Proper nutrition plays a crucial role in supporting muscle growth. Consuming an adequate amount of protein, carbohydrates, and fats, as well as staying hydrated, helps provide the necessary nutrients for muscle repair and growth. Additionally, timing nutrient intake around workouts, particularly protein consumption post-exercise, can enhance the hypertrophic response.</li>
+                        <br>
+                        <li><strong>Recovery and Hypertrophy:</strong> Adequate rest and recovery are essential for maximizing hypertrophy. Muscles need time to repair and rebuild after intense workouts, so ensuring sufficient sleep, managing stress levels, and incorporating active recovery strategies such as foam rolling and mobility work can aid in the recovery process and promote muscle growth.</li>
+                        <br>
+                    </ul>
+                    <h4>Conclusion:</h4>
+                    <p>
+                        Incorporating effective training, nutrition, and recovery strategies is key to maximizing muscle hypertrophy. By understanding the principles behind hypertrophy and implementing evidence-based practices, you can optimize your workouts and achieve your goals of building lean muscle mass and strength.
+                    </p>
+                    <div class="col-md-12">
+                        <img src="Hypertrophy.jpg" alt="Hypertrophy" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- Blog Post 2: Overloading -->
+                <div id="overloading">
+                    <h3>Pushing Your Limits: The Importance of Overloading in Strength Training</h3>
+                    <p id="Update">Last Updated: April 24, 2024</p>
+                    <p>
+                        <strong>Overloading</strong> is a fundamental principle of strength training that involves progressively increasing the intensity or volume of your workouts to continually challenge your muscles and stimulate adaptation. Understanding how to effectively overload your muscles is crucial for making progress and achieving your strength and fitness goals.
+                    </p>
+                    <br>
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li><strong>Progressive Overload:</strong> Progressive overload is the cornerstone of strength training and involves gradually increasing the demands placed on your muscles over time. This can be achieved by increasing the weight lifted, the number of repetitions performed, or the intensity of exercises.</li>
+                        <br>
+                        <li><strong>Variety and Progression:</strong> Incorporating a variety of exercises and training modalities into your routine can help prevent plateaus and ensure continued progress. Experiment with different rep ranges, training techniques, and exercise variations to keep your workouts challenging and stimulating.</li>
+                        <br>
+                        <li><strong>Monitoring and Adjusting:</strong> Paying attention to your body's response to training and tracking your progress is essential for effective overloading. Keep detailed records of your workouts, including weights lifted, sets, and repetitions, and adjust your training variables accordingly to ensure continued progress.</li>
+                        <br>
+                        <li><strong>Deloading:</strong> Periodic deloading phases, where training volume and intensity are reduced, can be beneficial for preventing overtraining and allowing for recovery and adaptation to occur. Deloading weeks or cycles give your body a chance to recuperate, reduce fatigue, and come back stronger for future training.</li>
+                        <br>
+                    </ul>
+                    <h4>Conclusion:</h4>
+                    <p>
+                        Incorporating progressive overload into your strength training regimen is essential for making gains in muscle size, strength, and overall fitness. By consistently challenging your muscles with progressively heavier weights and varying training stimuli, you can push your limits, break through plateaus, and achieve new levels of strength and performance.
+                    </p>
+                    <div class="col-md-12">
+                        <img src="Overloading.jpg" alt="Overloading" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- Blog Post 3: Deloading -->
+                <div id="deloading">
+                    <h3>The Art of Recovery: Understanding Deloading in Training</h3>
+                    <p id="Update">Last Updated: April 24, 2024</p>
+                    <p>
+                        <strong>Deloading</strong> is a strategic approach to training that involves temporarily reducing training volume and intensity to allow for recovery and prevent overtraining. While it may seem counterintuitive to back off from intense workouts, deloading plays a crucial role in long-term progress and injury prevention.
+                    </p>
+                    <br>
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li><strong>Purpose of Deloading:</strong> Deloading serves several important purposes in training, including reducing accumulated fatigue, preventing overtraining, and allowing for physiological and psychological recovery. By giving your body a break from intense training stimuli, deloading helps reset your nervous system, restore hormonal balance, and repair muscle tissue.</li>
+                        <br>
+                        <li><strong>Deloading Strategies:</strong> There are various approaches to deloading, including reducing training volume (e.g., fewer sets and reps), decreasing training intensity (e.g., using lighter weights), or incorporating active recovery activities such as mobility work, yoga, or low-impact cardio. The duration and frequency of deloading periods can vary depending on individual training goals, recovery capacity, and training intensity.</li>
+                        <br>
+                        <li><strong>Signs You Need to Deload:</strong> It's important to listen to your body and recognize signs of overtraining or burnout that may indicate the need for a deload. Symptoms such as persistent fatigue, decreased performance, irritability, disrupted sleep, and increased susceptibility to illness can signal that it's time to scale back and allow your body to recover.</li>
+                        <br>
+                        <li><strong>Benefits of Deloading:</strong> Deloading not only aids in physical recovery but also provides mental relief from the constant stress of intense training. It allows athletes to recharge mentally, regain motivation, and approach subsequent training cycles with renewed energy and focus.</li>
+                        <br>
+                    </ul>
+                    <h4>Conclusion:</h4>
+                    <p>
+                        Incorporating deloading phases into your training program is essential for long-term progress and injury prevention. By strategically implementing deload weeks or cycles, you can optimize recovery, manage fatigue, and maintain consistent performance gains over time. Remember to listen to your body, monitor your training response, and adjust your deloading strategy as needed to support your overall training goals and well-being.
+                    </p>
+                    <div class="col-md-12">
+                        <img src="Deload.jpg" alt="Deloading" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- Blog Post 4: Mobility -->
+                <div id="mobility">
+                    <h3>Mobility Matters: Enhancing Movement and Performance</h3>
+                    <p id="Update">Last Updated: April 24, 2024</p>
+                    <p>
+                        <strong>Mobility</strong> is often overlooked but plays a critical role in overall fitness and performance. It refers to the ability to move a joint through its full range of motion actively and effectively. Poor mobility can lead to compensatory movements, decreased performance, and increased risk of injury. Therefore, integrating mobility exercises into your routine is essential for optimizing movement quality, preventing injuries, and maximizing performance.
+                    </p>
+                    <br>
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li><strong>Benefits of Mobility:</strong> Improved mobility enhances joint health, flexibility, and movement efficiency. It allows for better execution of exercises, reduces the risk of muscle imbalances and compensatory patterns, and enhances athletic performance in various activities.</li>
+                        <br>
+                        <li><strong>Mobility vs. Flexibility:</strong> While flexibility focuses on the length of muscles and connective tissues, mobility encompasses both flexibility and stability around a joint. It involves active control and strength within the full range of motion, providing functional movement capabilities.</li>
+                        <br>
+                        <li><strong>Mobility Training Techniques:</strong> Incorporate dynamic stretching, foam rolling, mobility drills, and corrective exercises targeting specific movement patterns and areas of restriction. Focus on areas prone to tightness or limited mobility, such as hips, shoulders, and thoracic spine.</li>
+                        <br>
+                        <li><strong>Integration into Training:</strong> Prioritize mobility work as part of your warm-up routine to prepare the body for exercise and improve movement quality. Additionally, perform mobility exercises during rest periods between sets or as a standalone session to address mobility limitations and promote recovery.</li>
+                        <br>
+                    </ul>
+                    <h4>Conclusion:</h4>
+                    <p>
+                        Prioritizing mobility training is essential for enhancing movement quality, preventing injuries, and optimizing performance in both daily activities and athletic pursuits. By incorporating targeted mobility exercises into your routine and addressing areas of restriction, you can unlock your body's full potential and move with greater efficiency, stability, and confidence.
+                    </p>
+                    <div class="col-md-12">
+                        <img src="Mobility.jpg" alt="Deloading" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- Blog Post 5: Cardiovascular -->
+                <div id="cardio">
+                    <h3>Maximizing Cardiovascular Conditioning: Strategies for Endurance and Health</h3>
+                    <p id="Update">Last Updated: April 24, 2024</p>
+                    <p>
+                        <strong>Cardiovascular conditioning</strong> is vital for overall health, endurance, and performance. It involves training the heart and lungs to efficiently deliver oxygen to working muscles and remove metabolic byproducts during prolonged physical activity. Whether your goal is to improve cardiovascular health, enhance endurance, or support fat loss, incorporating cardiovascular training into your regimen is essential for achieving optimal fitness levels.
+                    </p>
+                    <br>
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li><strong>Types of Cardiovascular Training:</strong> Include both steady-state cardio and high-intensity interval training (HIIT) in your routine. Steady-state cardio involves maintaining a consistent intensity over an extended period, such as jogging or cycling at a moderate pace. HIIT alternates between short bursts of high-intensity effort and brief recovery periods, maximizing calorie burn and cardiovascular adaptation.</li>
+                        <br>
+                        <li><strong>Benefits of Cardiovascular Training:</strong> Regular cardiovascular exercise improves heart health, enhances aerobic capacity, increases stamina, and boosts overall energy levels. It also aids in weight management, reduces stress, improves sleep quality, and lowers the risk of chronic diseases such as heart disease, diabetes, and hypertension.</li>
+                        <br>
+                        <li><strong>Programming Considerations:</strong> Determine your training goals and tailor your cardiovascular program accordingly. Incorporate a mix of low, moderate, and high-intensity sessions, vary the duration and type of cardio activities, and progressively overload to continue challenging your cardiovascular system and avoiding plateaus.</li>
+                        <br>
+                        <li><strong>Integration with Strength Training:</strong> Balance cardiovascular training with strength training to optimize overall fitness. Consider scheduling cardio sessions on separate days or performing them after strength workouts to avoid interference with muscle recovery and adaptation. Alternatively, incorporate circuit training or metabolic conditioning workouts that combine strength and cardio exercises for a time-efficient and effective workout.</li>
+                    </ul>
+                    <h4>Conclusion:</h4>
+                    <p>
+                        Cardiovascular conditioning is a cornerstone of fitness, providing numerous health benefits and enhancing overall performance. By incorporating a variety of cardiovascular training methods into your routine, customizing your workouts to align with your goals, and staying consistent with your training regimen, you can maximize your cardiovascular health, endurance, and fitness level, leading to a healthier, more active lifestyle.
+                    </p>
+                    <div class="col-md-12">
+                        <img src="Cardio.jpg" alt="Cardiovascular Training" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar (25% width) -->
+            <div class="col-md-3">
+                <div class="fixed-sidebar">
+                    <h2>Navigation</h2>
+                    <ul>
+                        <li><a href="#hypertrophy">Hypertrophy</a></li>
+                        <li><a href="#overloading">Overloading</a></li>
+                        <li><a href="#deloading">Deloading</a></li>
+                        <li><a href="#mobility">Mobility</a></li>
+                        <li><a href="#cardio">Cardio</a></li>
+                        <li><a href="blog.html">Back to top</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <!-- Form for signing up for updates -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Sign up for updates</h5>
+                    <form action="/subscribe" method="post" id="subscribeForm" novalidate>
+                        <div class="input-group mb-3">
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2" required>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--Navigation links added here for convenience-->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="coaching.html">Coaching</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="merchandise.html">Merchandise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">View Subscribers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">View Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coaching-bookings">View Coaching Bookings</a>
+            </li>
+        </ul>
+        <br>
+            <div class="text-center">
+                <p id="LastUpdate">MaverickFitness@gmail.com </p>
+                <p id="LastUpdate">Last Updated: 25/04/2024</p>
+                <p id="Copyright">&copy; 2024 Maverick Nguyen. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

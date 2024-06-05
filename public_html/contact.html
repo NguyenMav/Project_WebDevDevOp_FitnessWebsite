@@ -1,0 +1,214 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maverick Nguyen">
+    <meta name="description" content="Contact webpage showing phone, email and address of business">
+    <title>Contact</title>
+
+    <!-- Linked to style.css file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Linked to Bootstrap files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Maverick's Fitness Coaching</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coaching.html">Coaching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="merchandise.html">Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <!-- Search form -->
+                <form class="d-flex" id="searchForm" onsubmit="handleSearch(event)">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <div class="container mt-5">
+        <h3 class="mb-4">Contact Us</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Contact form -->
+                <p>If you have any questions, feedback, or inquiries, feel free to contact us using the form below:</p>
+                <form action="/contact" method="post" id="newContactForm" novalidate>
+                <div class="mb-3">
+                    <label for="newName" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" name="name" id="newName" required>
+                    <div id="nameErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="newEmail" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" name="email" id="newEmail" required>
+                    <div id="emailErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="newMessage" class="form-label">Message</label>
+                    <textarea class="form-control" name="message" id="newMessage" rows="5" required></textarea>
+                    <div id="textErrorMessage" class="text-danger"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="button" class="btn btn-primary" onclick="resetNewForm()">Reset</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <!-- Contact information -->
+                <p>You can also reach us using the following contact information:</p>
+                <ul>
+                    <li><strong>Phone:</strong> 1234567890</li>
+                    <li><strong>Email:</strong> MaverickFitness@gmail.com</li>
+                    <li><strong>Address:</strong> 123 Bulking Street, Massive, Victoria, 3000</li>
+                </ul>
+                <!-- Embedded Google Map -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678910111213!2d-74.005941!3d40.712784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f10cb5ef63%3A0xb3c8db7f70a3c06f!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2suk!4v1649628182710!5m2!1sen!2suk" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <!-- Form for signing up for updates -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Sign up for updates</h5>
+                    <form action="/subscribe" method="post" id="subscribeForm" novalidate>
+                        <div class="input-group mb-3">
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2" required>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Navigation links -->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="coaching.html">Coaching</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="merchandise.html">Merchandise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">View Subscribers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">View Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coaching-bookings">View Coaching Bookings</a>
+            </li>
+        </ul>
+        <br>
+        <div class="text-center">
+            <p id="LastUpdate">MaverickFitness@gmail.com</p>
+            <p id="LastUpdate">Last Updated: 25/04/2024</p>
+            <p id="Copyright">&copy; 2024 Maverick Nguyen. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Contact Form Submission
+        document.getElementById("newContactForm").addEventListener("submit", function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+            // Clear any previous error messages
+            resetErrorMessages();
+            // Get the form inputs
+            var nameInput = document.getElementById("newName");
+            var emailInput = document.getElementById("newEmail");
+            var messageInput = document.getElementById("newMessage");
+            // Check if the name field is empty
+            if (!nameInput.value.trim()) {
+                document.getElementById("nameErrorMessage").innerText = "Please enter your name.";
+            }
+            // Check if the email field is empty or has an invalid format
+            if (!emailInput.value.trim()) {
+                document.getElementById("emailErrorMessage").innerText = "Please enter your email address.";
+            } else if (!isValidEmail(emailInput.value.trim())) {
+                document.getElementById("emailErrorMessage").innerText = "Please enter a valid email address.";
+            }
+            // Check if the message field is empty or contains less than twenty words
+            if (!messageInput.value.trim()) {
+                document.getElementById("textErrorMessage").innerText = "Please enter your message.";
+            } else {
+                var messageWords = messageInput.value.trim().split(/\s+/);
+                if (messageWords.length < 20) {
+                    document.getElementById("textErrorMessage").innerText = "Please enter at least 20 words in your message.";
+                }
+            }
+            // If all fields are filled, submit the form
+            if (nameInput.value.trim() && emailInput.value.trim() && isValidEmail(emailInput.value.trim()) && messageInput.value.trim() && messageWords.length >= 20) {
+                document.getElementById("newContactForm").submit();
+            }
+        });
+        // Function to validate email format
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        // Function to reset error messages
+        function resetErrorMessages() {
+            document.getElementById("nameErrorMessage").innerText = "";
+            document.getElementById("emailErrorMessage").innerText = "";
+            document.getElementById("textErrorMessage").innerText = "";
+        }
+        // Function to reset the new form
+        function resetNewForm() {
+            resetErrorMessages();
+        }
+    </script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!-- coaching.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maverick Nguyen">
+    <meta name="description" content="Coaching webpage showing the services the business provides">
+    <title>Coaching Services</title>
+
+    <!-- Linked to style.css file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Linked to the Bootstrap files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Maverick's Fitness Coaching</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coaching.html">Coaching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="merchandise.html">Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <!-- Search form -->
+                <form class="d-flex" id="searchForm" onsubmit="handleSearch(event)">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Table for plans and fees -->
+            <div class="col-md-6">
+                <h3 class="mb-3 mt-4">Coaching Services</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Plan</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Training Plan</td>
+                            <td>One-on-one coaching session tailored to your fitness goals. Along with a training plan to
+                                follow for 4 weeks.</td>
+                            <td>$50/h session</td>
+                        </tr>
+                        <tr>
+                            <td>Diet Plan</td>
+                            <td>One-on-one coaching session tailored to your fitness goals. Along with a diet plan to
+                                follow for 4 weeks</td>
+                            <td>$50/h session</td>
+                        </tr>
+                        <tr>
+                            <td>Consultation</td>
+                            <td>One-on-one coaching session to address any concerns fitness related.</td>
+                            <td>$50/h session</td>
+                        </tr>
+                        <tr>
+                            <td>Personal Coaching</td>
+                            <td>One-on-one coaching session in-person to discuss anything fitness related and to provide
+                                assistance in performing exercises correctly.</td>
+                            <td>$100/h session</td>
+                        </tr>
+                        <tr>
+                            <td>Single/Group Online Class</td>
+                            <td>One-on-one or group coaching session that can be tailored to your needs. A follow-along
+                                home workout class designed to help you achieve your goals.</td>
+                            <td>To be discussed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Booking Form -->
+            <div class="col-md-6">
+                <h3 class="mt-4 mb-3">Book a Coaching Session</h3>
+                <form action="/book-coaching" method="post" id="bookingForm" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" required>
+                    <div id="nameErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                    <div id="emailErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" required>
+                    <div id="phoneErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="session" class="form-label">Select Session Type</label>
+                    <select class="form-select" name="session" id="session" required>
+                        <option value="">Choose...</option>
+                        <option value="trainingplan">Training Plan</option>
+                        <option value="dietplan">Diet Plan</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="personalcoaching">Personal Coaching</option>
+                        <option value="onlineclass">Single/Group Online Class</option>
+                    </select>
+                <div id="sessionErrorMessage" class="text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="goal" class="form-label">What do you want to achieve?</label>
+                    <textarea class="form-control" name="goal" id="goal" rows="3" required></textarea>
+                    <div id="goalErrorMessage" class="text-danger"></div>
+                </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="resetForm()">Reset</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <!-- Form for signing up for updates -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Sign up for updates</h5>
+                    <form action="/subscribe" method="post" id="subscribeForm" novalidate>
+                        <div class="input-group mb-3">
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2" required>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Navigation links -->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="coaching.html">Coaching</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="merchandise.html">Merchandise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">View Subscribers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">View Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coaching-bookings">View Coaching Bookings</a>
+            </li>
+        </ul>
+        <br>
+        <div class="text-center">
+            <p id="LastUpdate">MaverickFitness@gmail.com</p>
+            <p id="LastUpdate">Last Updated: 25/04/2024</p>
+            <p id="Copyright">&copy; 2024 Maverick Nguyen. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Booking Form Validation
+        document.addEventListener("DOMContentLoaded", function () {
+            var bookingForm = document.getElementById("bookingForm");
+            bookingForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                var nameInput = document.getElementById("name");
+                var emailInput = document.getElementById("email");
+                var phoneInput = document.getElementById("phone");
+                var sessionInput = document.getElementById("session");
+                var goalInput = document.getElementById("goal");
+                // Check email pattern
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var phonePattern = /^\d{10}$/;
+                // Check name input
+                if (!nameInput.value.trim()) {
+                    document.getElementById("nameErrorMessage").innerText = "Please enter your name.";
+                } else {
+                    document.getElementById("nameErrorMessage").innerText = "";
+                }
+                // Check email input
+                if (!emailInput.value.trim()) {
+                    document.getElementById("emailErrorMessage").innerText = "Please enter your email address.";
+                } else if (!emailPattern.test(emailInput.value.trim())) {
+                    document.getElementById("emailErrorMessage").innerText = "Please enter a valid email address.";
+                } else {
+                    document.getElementById("emailErrorMessage").innerText = "";
+                }
+                // Check phone input
+                if (!phoneInput.value.trim()) {
+                    document.getElementById("phoneErrorMessage").innerText = "Please enter your phone number.";
+                } else if (!phonePattern.test(phoneInput.value.trim())) {
+                    document.getElementById("phoneErrorMessage").innerText = "Please enter a valid 10-digit phone number.";
+                } else {
+                    document.getElementById("phoneErrorMessage").innerText = "";
+                }
+                // Check session input
+                if (!sessionInput.value.trim()) {
+                    document.getElementById("sessionErrorMessage").innerText = "Please select a session type.";
+                } else {
+                    document.getElementById("sessionErrorMessage").innerText = "";
+                }
+                // Check goal input length (at least 20 characters)
+                if (!goalInput.value.trim() || goalInput.value.trim().split(/\s+/).length < 20) {
+                    document.getElementById("goalErrorMessage").innerText = "Please enter a goal with at least 20 words.";
+                } else {
+                    document.getElementById("goalErrorMessage").innerText = "";
+                }
+                // If there are no error messages, you can proceed with form submission
+                if (
+                    nameInput.value.trim() &&
+                    emailPattern.test(emailInput.value.trim()) &&
+                    phonePattern.test(phoneInput.value.trim()) &&
+                    sessionInput.value.trim() &&
+                    goalInput.value.trim() &&
+                    goalInput.value.trim().split(/\s+/).length >= 20
+                ) {
+                    bookingForm.submit();
+                }
+            });
+        });
+        function resetForm() {
+            // Clear all error messages
+            document.getElementById("nameErrorMessage").innerText = "";
+            document.getElementById("emailErrorMessage").innerText = "";
+            document.getElementById("phoneErrorMessage").innerText = "";
+            document.getElementById("sessionErrorMessage").innerText = "";
+            document.getElementById("goalErrorMessage").innerText = "";
+        }
+    </script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

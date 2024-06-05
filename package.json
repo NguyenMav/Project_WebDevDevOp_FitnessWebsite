@@ -1,0 +1,15 @@
+{
+  "name": "personalproject",
+  "version": "1.0.0",
+  "description": "SIT774 personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maverick Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}

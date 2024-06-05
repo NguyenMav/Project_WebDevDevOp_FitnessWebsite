@@ -1,0 +1,177 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maverick Nguyen">
+    <meta name="description" content="About webpage showing details about the team of the business">
+    <title>About</title>
+
+    <!--Linked to style.css file-->
+    <link rel="stylesheet" href="style.css">
+    <!--Linked to the Bootstrap files-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Maverick's Fitness Coaching</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coaching.html">Coaching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="merchandise.html">Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex" id="searchForm" onsubmit="handleSearch(event)">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Team Members Section -->
+        <h3 class="mt-5 mb-3" id="OurTeam">Our Team</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Team Member 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="ArnoldProfile.jpg" class="card-img-top" alt="Team Member 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Arnold Schwarzenegger</h5>
+                        <p class="card-text">Nutrionist</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="RonnieProfile.jpg" class="card-img-top" alt="Team Member 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Ronnie Coleman</h5>
+                        <p class="card-text">Physiotherapist</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="JayProfile.jpg" class="card-img-top" alt="Team Member 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Jay Cutler</h5>
+                        <p class="card-text">Fitness Trainer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="container mt-4" id="AboutUs">
+        <h2>About Us</h2>
+        <p>Welcome to Maverick's Fitness Blog! We are committed to providing you with comprehensive information, expert advice, and practical resources to help you achieve your fitness goals and lead a healthier lifestyle.</p>
+        <p>Our team of seasoned fitness professionals, including certified trainers, nutritionists, and health enthusiasts, is dedicated to empowering individuals of all fitness levels. Whether you're a beginner looking to kickstart your fitness journey or an experienced athlete striving for peak performance, we're here to support and guide you every step of the way.</p>
+        <p>At Maverick's Fitness Blog, you'll discover a wealth of articles, workout plans, nutritional guidance, and motivational content tailored to your needs. We believe that fitness is not just about physical strength, but also about mental resilience, emotional well-being, and overall vitality.</p>
+        <p>Join us on this transformative journey towards better health, greater fitness, and a happier life. Together, we can turn your fitness aspirations into reality!</p>
+    </div>
+    <!-- Our Vision Section -->
+    <div class="container mt-5" id="OurVision">
+        <h3 class="mb-4">Our Vision</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p>At Maverick's Fitness Coaching, our vision extends far beyond mere physical fitness. We envision a world where everyone has the knowledge, resources, and support to lead vibrant, fulfilling lives.</p>
+                <p>Our vision is to foster a global community of empowered individuals who prioritize their health and well-being, embrace physical activity as a cornerstone of vitality, and inspire others to do the same.</p>
+                <p>We believe in holistic wellness, encompassing not only physical fitness but also mental resilience, emotional balance, and spiritual harmony. Our ultimate goal is to empower individuals to unleash their full potential, overcome obstacles, and live life to the fullest.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="Team.jpg" class="img-fluid" alt="Our Vision">
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <!-- Form for signing up for updates -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Sign up for updates</h5>
+                    <form action="/subscribe" method="post" id="subscribeForm" novalidate>
+                        <div class="input-group mb-3">
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2" required>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--Navigation links added here for convenience-->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="coaching.html">Coaching</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="merchandise.html">Merchandise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">View Subscribers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">View Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coaching-bookings">View Coaching Bookings</a>
+            </li>
+        </ul>
+        <br>
+            <div class="text-center">
+                <p id="LastUpdate">MaverickFitness@gmail.com </p>
+                <p id="LastUpdate">Last Updated: 25/04/2024</p>
+                <p id="Copyright">&copy; 2024 Maverick Nguyen. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

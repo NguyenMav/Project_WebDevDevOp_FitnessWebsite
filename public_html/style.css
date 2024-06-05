@@ -1,0 +1,61 @@
+/* Hero section styles */
+.hero-section {
+  background-image: url('Arnold.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Heading styles for hero section */
+.hero-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Subheading styles for hero section */
+.hero-subheading {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+/*Everything below here was added for Part 2 of the project*/
+/* Update message styles */
+#Update {
+  color: grey;
+}
+
+/* Fixed sidebar styles, allows sidebar to follow when you scroll in blog.html */
+.fixed-sidebar {
+  position: sticky;
+  top: 50px;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+/* Hide sidebar on smaller screens as it looks weird */
+@media (max-width: 992px) {
+  .fixed-sidebar {
+    display: none;
+  }
+}
+
+/* Error message styles for the Follow For Updates validation error in the footers of all webpages */
+#errorMessage {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Custom styles for smaller Order Summary table */
+#orderSummaryTable {
+  max-width: 400px;
+}

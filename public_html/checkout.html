@@ -1,0 +1,318 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maverick Nguyen">
+    <meta name="description" content="Checkout webpage is where you pay for your products and get it delivered">
+    <title>Checkout</title>
+
+    <!-- Linked to style.css file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Linked to the Bootstrap files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Maverick's Fitness Coaching</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coaching.html">Coaching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="merchandise.html">Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <!-- Search form -->
+                <form class="d-flex" id="searchForm" onsubmit="handleSearch(event)">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Form for checkout -->
+    <div class="container mt-4">
+        <form id="checkoutForm">
+            <div class="row">
+                <!-- Shopping List -->
+                <div class="container mt-5 col-md-12">
+                    <h3>Shopping List</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Total Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shoppingListBody"></tbody>
+                    </table>
+                </div>
+                <!-- Order Summary -->
+                <div class="container mt-5 col-md-12">
+                    <h3>Order Summary</h3>
+                    <table class="table" id="orderSummaryTable">
+                        <tbody>
+                            <tr>
+                                <td><strong>Subtotal:</strong></td>
+                                <td id="subtotal">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sales Tax (10%):</strong></td>
+                                <td id="salesTax">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grand Total:</strong></td>
+                                <td id="grandTotal">$0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Delivery Details -->
+                <div class="col-md-6 mt-5">
+                    <h3 class="mt-4">Delivery Details</h3>
+                    <!-- Approval to Leave at Door -->
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="leaveatdoor" name="leaveatdoor">
+                            <label class="form-check-label" for="leaveatdoor">Approval to leave at door</label>
+                        </div>
+                    </div>
+                    <!-- Preferred Delivery Time -->
+                    <div class="form-group">
+                        <label for="preferredtime">Preferred Delivery Time</label>
+                        <select class="form-control" id="preferredtime" name="preferredtime">
+                            <option>Morning</option>
+                            <option>Day</option>
+                            <option>Evening</option>
+                        </select>
+                        <div id="deliverytimeAddressErrorMessage" class="text-danger"></div>
+                    </div>
+                    <!-- Notes For The Delivery -->
+                    <p>Notes For The Delivery</p>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="Notes" name="Notes"
+                            style="height: 180px"></textarea>
+                        <label for="Notes"></label>
+                        <div id="deliverynotesErrorMessage" class="text-danger"></div>
+                    </div>
+                </div>
+                <!-- Payment Method -->
+                <div class="col-md-6 mt-5">
+                    <h3 class="mt-4">Payment Method</h3>
+                    <!-- Card Number -->
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber"
+                            placeholder="Enter card number">
+                        <div id="cardNumberErrorMessage" class="text-danger"></div>
+                    </div>
+                    <!-- Expiry Date and CVV -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="expiryDate" class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiryDate" name="expiryDate"
+                                placeholder="MM/YY">
+                            <div id="expiryDateErrorMessage" class="text-danger"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV">
+                            <div id="cvvErrorMessage" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <!-- Cardholder Name -->
+                    <div class="mb-1">
+                        <label for="cardholderName" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholderName" name="cardholderName"
+                            placeholder="Enter cardholder name">
+                        <div id="cardholderNameErrorMessage" class="text-danger"></div>
+                    </div>
+                    <!-- Billing Address -->
+                    <div class="mb-3">
+                        <label for="billingAddress" class="form-label">Billing Address</label>
+                        <input type="text" class="form-control" id="billingAddress" name="billingAddress"
+                            placeholder="Enter billing address">
+                        <div id="billingAddressErrorMessage" class="text-danger"></div>
+                    </div>
+                </div>
+                <!-- Functional buttons -->
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Pay Now</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                    <!-- Button to go back to Merchandise webpage -->
+                    <a href="merchandise.html" class="btn btn-primary"> Back to Merchandise</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <!-- Form for signing up for updates -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Sign up for updates</h5>
+                    <form action="/subscribe" method="post" id="subscribeForm" novalidate>
+                        <div class="input-group mb-3">
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2" required>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Navigation links -->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="coaching.html">Coaching</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="merchandise.html">Merchandise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">View Subscribers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">View Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coaching-bookings">View Coaching Bookings</a>
+            </li>
+        </ul>
+        <br>
+        <div class="text-center">
+            <p id="LastUpdate">MaverickFitness@gmail.com </p>
+            <p id="LastUpdate">Last Updated: 25/04/2024</p>
+            <p id="Copyright">&copy; 2024 Maverick Nguyen. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var checkoutForm = document.getElementById("checkoutForm");
+            checkoutForm.addEventListener("submit", function (event) {
+                // Prevent the form from submitting
+                event.preventDefault();
+                // Clear any previous error messages
+                resetErrorMessages();
+                // Get the form inputs
+                var leaveAtDoorCheckbox = document.getElementById("leaveatdoor");
+                var preferredTimeSelect = document.getElementById("preferredtime");
+                var notesTextarea = document.getElementById("Notes");
+                var cardNumberInput = document.getElementById("cardNumber");
+                var expiryDateInput = document.getElementById("expiryDate");
+                var cvvInput = document.getElementById("cvv");
+                var cardholderNameInput = document.getElementById("cardholderName");
+                var billingAddressInput = document.getElementById("billingAddress");
+                // Check if the preferred delivery time is selected
+                if (preferredTimeSelect.value === "") {
+                    showError("Please select a preferred delivery time.", preferredTimeSelect);
+                }
+                // Check if notes for delivery are provided and contain at least 20 words
+                var notesWords = notesTextarea.value.trim().split(/\s+/);
+                if (notesTextarea.value.trim() === "" || notesWords.length < 20) {
+                    showError("Please enter at least 20 words in notes for the delivery.", notesTextarea);
+                }
+                // Check if the card number is provided and has at least 15 numbers
+                if (cardNumberInput.value.trim().length < 15) {
+                    showError("Please enter at least 15 numbers for the card number.", cardNumberInput);
+                }
+                // Check if the expiry date is provided and in the format MM/YY
+                var expiryDatePattern = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
+                if (!expiryDatePattern.test(expiryDateInput.value.trim())) {
+                    showError("Please enter expiry date in the format MM/YY.", expiryDateInput);
+                }
+                // Check if the CVV is provided and has 3 digits
+                if (!/^\d{3}$/.test(cvvInput.value.trim())) {
+                    showError("Please enter 3 digits for the CVV.", cvvInput);
+                }
+                // Check if the cardholder name is provided
+                if (cardholderNameInput.value.trim() === "") {
+                    showError("Please enter cardholder name.", cardholderNameInput);
+                }
+                // Check if the billing address is provided
+                if (billingAddressInput.value.trim() === "") {
+                    showError("Please enter billing address.", billingAddressInput);
+                }
+                // If all fields are filled, you can submit the form
+                if (!checkForErrors()) {
+                    checkoutForm.submit();
+                }
+            });
+            // Reset button functionality
+            var resetButton = document.querySelector('button[type="reset"]');
+            resetButton.addEventListener("click", function () {
+                resetErrorMessages();
+            });
+            // Function to display error message
+            function showError(message, inputElement) {
+                var errorDiv = document.createElement("div");
+                errorDiv.classList.add("text-danger");
+                errorDiv.innerText = message;
+                inputElement.insertAdjacentElement("afterend", errorDiv);
+            }
+            // Function to reset error messages
+            function resetErrorMessages() {
+                var errorMessages = checkoutForm.querySelectorAll(".text-danger");
+                errorMessages.forEach(function (errorMessage) {
+                    errorMessage.remove();
+                });
+            }
+            // Function to check if there are any error messages
+            function checkForErrors() {
+                return checkoutForm.querySelectorAll(".text-danger").length > 0;
+            }
+        });
+    </script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
