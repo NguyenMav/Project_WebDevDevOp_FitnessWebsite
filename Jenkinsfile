@@ -9,13 +9,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                cleanWs()
-                sh "mvn clean package"
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
             }
         }
         stage('Tests') {
             steps {
-                sh "mvn test"
+                node --version
+                npm --version
+                npm ci
+                npm run build
+                ls -la
             }
         }
         stage('Code Analysis') {
