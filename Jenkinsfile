@@ -9,12 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Stage 1: Build'
+                cleanWs()
+                sh "mvn clean package"
             }
         }
         stage('Tests') {
             steps {
-                echo 'Stage 2: Unit and Integration Tests'
+                sh "mvn test"
             }
         }
         stage('Code Analysis') {
