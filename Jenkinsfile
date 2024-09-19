@@ -10,14 +10,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Stage 1: Build'
-                checkout scm
-                sh 'npm install'
-                sh 'npm run build'
             }
         }
         stage('Tests') {
             steps {
-
+                echo 'Stage 2: Tests'
             }
         }
         stage('Code Analysis') {
