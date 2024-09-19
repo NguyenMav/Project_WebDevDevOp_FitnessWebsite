@@ -14,9 +14,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Stage 1: Build'
-                sh 'sudo apt install npm'
-                sh 'npm test'
-                sh 'spm run build'
+                bat 'sudo apt install npm'
+                bat 'npm test'
+                bat 'spm run build'
             }
         }
         stage('Tests') {
