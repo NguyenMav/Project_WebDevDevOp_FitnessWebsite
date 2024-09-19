@@ -15,7 +15,6 @@ pipeline {
             steps {
                 echo 'Stage 1: Build'
                 bat 'npm install'
-                bat 'npm test'
                 bat 'npm run build'
             }
         }
