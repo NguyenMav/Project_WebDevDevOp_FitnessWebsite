@@ -15,24 +15,6 @@ pipeline {
                 echo 'Tool: JUnit'
                 echo 'Description: Runs unit tests to validate individual components of the application and integration tests to ensure that different parts of the application work together as expected. This stage helps to catch bugs early and ensures the code meets the functional requirements.'
             }
-            post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'zung.nguyen777@gmail.com',
-                        subject: 'Stage Success - Unit and Integration Tests',
-                        body: 'The Unit and Integration Tests stage has succeeded. Refer to report.'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'zung.nguyen777@gmail.com',
-                        subject: 'Stage Failure - Unit and Integration Tests',
-                        body: 'The Unit and Integration Tests stage has failed. Refer to report.'
-                    )
-                }
-            }
         }
         stage('Code Analysis') {
             steps {
@@ -46,24 +28,6 @@ pipeline {
                 echo 'Stage 4: Security Scan'
                 echo 'Tool: OWASP'
                 echo 'Description: Performs a security scan on the application to identify common vulnerabilities such as SQL injection, cross-site scripting (XSS), and other security risks. This stage helps to ensure that the application is secure before deployment.'
-            }
-            post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'zung.nguyen777@gmail.com',
-                        subject: 'Stage Success - Security Scan',
-                        body: 'The Security Scan stage has succeeded. Refer to report.'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'zung.nguyen777@gmail.com',
-                        subject: 'Stage Failure - Security Scan',
-                        body: 'The Security Scan stage has failed. Refer to report.'
-                    )
-                }
             }
         }
         stage('Deploy to Staging') {
