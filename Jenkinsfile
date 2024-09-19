@@ -9,19 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
         stage('Tests') {
             steps {
-                node --version
-                npm --version
-                npm ci
-                npm run build
-                ls -la
+
             }
         }
         stage('Code Analysis') {
