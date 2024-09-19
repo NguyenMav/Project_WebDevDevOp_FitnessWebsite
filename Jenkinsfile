@@ -5,11 +5,18 @@ pipeline {
         jdk 'Java17'
         maven 'Maven3'
     }
-    
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Stage 1: Build'
+                sh 'sudo apt install npm'
+                sh 'npm test'
+                sh 'spm run build'
             }
         }
         stage('Tests') {
