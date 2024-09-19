@@ -8,12 +8,6 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 echo 'Stage 1: Build'
                 sh 'npm install'
@@ -23,6 +17,12 @@ pipeline {
         stage('Tests') {
             steps {
                 echo 'Stage 2: Tests'
+                agent {
+                    docker {
+                        image 'node:18-alpine'
+                        reuseNode true
+                    }
+                }
             }
         }
         stage('Code Analysis') {
