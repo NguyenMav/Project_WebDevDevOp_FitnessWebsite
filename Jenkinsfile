@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'Java17'
-        maven 'Maven3'
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -20,8 +16,8 @@ pipeline {
             }
             steps {
                 echo 'Stage 1: Build'
-                bat 'npm install'
-                bat 'npm run build'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
         stage('Tests') {
