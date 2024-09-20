@@ -21,8 +21,9 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    // Run SonarQube scan within the Sonar stage of the Dockerfile
-                    sh 'docker run --rm mynodeapp:latest npm run sonar'
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'sonar-scanner'
+                    }
                 }
             }
         }

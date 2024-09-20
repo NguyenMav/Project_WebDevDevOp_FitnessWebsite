@@ -1,42 +1,26 @@
 # Stage 1: Build
 FROM node:14 AS build
 
-# Set the working directory in the container
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
-
-# Copy the rest of the application code
 COPY . .
 
 # Stage 2: SonarQube Scan
 FROM node:14 AS sonar
 
-# Set the working directory
 WORKDIR /app
-
-# Copy the application code from the build stage
 COPY --from=build /app .
 
-# Install sonar-scanner globally and set permissions
+# Install sonar-scanner and set permissions
 RUN npm install -g sonar-scanner \
     && chmod +x /usr/local/bin/sonar-scanner
-
-# Stage 3: Production Image
+RUN ls -l /app/node_modules/sonar-scanner/bin/sonar-scanner
+# Stage 3: Production
 FROM node:14 AS production
 
-# Set the working directory
 WORKDIR /app
-
-# Copy the application code from the build stage
 COPY --from=build /app .
 
-# Expose the application port
 EXPOSE 3000
-
-# Command to run the application
 CMD ["npm", "start"]
