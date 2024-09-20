@@ -24,19 +24,18 @@ pipeline {
                     reuseNode true
                 }
             }
-
             steps {
                 sh '''
-                    ls -la test 
-                    npm test 
+                    npm test
                 '''
             }
             post {
                 always {
-                    junit '**/test-results.txt' 
+                    junit 'test-results.xml'
                 }
             }
         }
+
         stage('Code Quality Analysis') {
             agent {
                 docker {
@@ -45,8 +44,8 @@ pipeline {
                 }
             }
             steps {
-                withSonarQubeEnv(installationName: 'SonarQube1') {
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                withSonarQubeEnv('SonarQube1') {
+                    sh 'npx sonar-scanner'
                 }
             }
         }
