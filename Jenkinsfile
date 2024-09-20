@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-         SCANNER_HOME = tool 'SonarQubeScanner';    
-    }
-
     stages {
         stage('Build') {
             agent {
@@ -43,13 +39,19 @@ pipeline {
         stage('Code Quality Analysis') {
             agent {
                 docker {
-                    image 'node:18-alpine'
+                    image 'sonarsource/sonar-scanner-cli:4.6'
                     reuseNode true
                 }
+            }
             steps {
-                
-                withSonarQubeEnv('SonarQube') {
-                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                withSonarQubeEnv('SonarQube1') {
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=my-nodejs-project \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=${SONAR_HOST_URL} \
+                        -Dsonar.login=${SONAR_AUTH_TOKEN}
+                    '''
                 }
             }
         }
