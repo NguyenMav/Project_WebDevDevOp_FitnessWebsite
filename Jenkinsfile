@@ -5,25 +5,22 @@ peline {
         stage('Build') {
             steps {
                 sh '''
-                    echo "Stage 1: Build"
-                    ls -la
-                    touch container-no.txt
+                    sudo apt install npm
+                    docker build -t my-node-app:1.0 .
                 '''
             }
         }
         stage('Tests') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 sh '''
-                    echo "Stage 2: Tests"
-                    ls -la
-                    touch container-yes.txt
+                        npm test
                 '''
+                }
+                post {
+                    always {
+                        junit 'test-results.xml'
+                    }
+                }
             }
         }
         stage('Code Analysis') {
