@@ -3,6 +3,10 @@ pipeline {
 
     stages {
         stage('Build') {
+            script {
+                sh '''
+                    mkdir -p "$WORKSPACE"
+                '''
             agent {
                 docker {
                     image 'node:18-alpine'
