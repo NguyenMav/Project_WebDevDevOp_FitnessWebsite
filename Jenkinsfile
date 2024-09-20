@@ -21,7 +21,14 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    sh 'docker run --rm -e SONAR_HOST_URL=http://192.168.1.109:9000 -e SONAR_LOGIN=sqp_880a75b2016974c6dca406576c0b5af8482dfec8 -v $(pwd):/usr/src --workdir=/usr/src sonarsource/sonar-scanner-cli'
+                    sh '''
+                    docker run --rm \
+                        -e SONAR_HOST_URL=http://host.docker.internal:9000 \
+                        -e SONAR_LOGIN=sqp_4eb127acc5df34ca8f919317288697931face948 \
+                        -v $(pwd):/usr/src \
+                        --workdir=/usr/src \
+                        sonarsource/sonar-scanner-cli
+                    '''
                 }
             }
         }
@@ -29,7 +36,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy to Docker container
                     sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
                 }
             }
