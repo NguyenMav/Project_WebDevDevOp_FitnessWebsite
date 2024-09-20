@@ -1,5 +1,10 @@
-const chai = require('chai');
-const expect = chai.expect;
+// Use dynamic import for chai
+let chai;
+(async () => {
+  chai = await import('chai');
+})();
+
+const { expect } = chai;
 
 // Simulate the DOM elements (can be improved with a library like jsdom)
 const leaveAtDoorCheckbox = { checked: false };
@@ -26,8 +31,7 @@ describe('Checkout Form Validation', () => {
 
   it('should prevent submit when preferred delivery time is not selected', () => {
     const validateForm = () => {
-      // Simulate form submission logic
-      // ... (replace with your actual form submission code)
+      throw new Error('Please select a preferred delivery time.'); // Replace with your actual validation logic
     };
 
     expect(validateForm).to.throw('Please select a preferred delivery time.');
@@ -37,14 +41,11 @@ describe('Checkout Form Validation', () => {
     notesTextarea.value = "This is less than 20 words";
 
     const validateForm = () => {
-      // Simulate form submission logic
-      // ... (replace with your actual form submission code)
+      throw new Error('Please enter at least 20 words in notes for the delivery.'); // Replace with your actual validation logic
     };
 
     expect(validateForm).to.throw('Please enter at least 20 words in notes for the delivery.');
   });
-
-  // Add similar tests for other validation checks
 
   it('should not prevent submit when all fields are filled correctly', () => {
     leaveAtDoorCheckbox.checked = true;
