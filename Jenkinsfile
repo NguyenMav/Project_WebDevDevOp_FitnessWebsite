@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh 'sonar-scanner'
+                        sh 'docker run --rm -v $WORKSPACE:/app sonarsource/sonar-scanner-cli -Dsonar.projectKey=test -Dsonar.sources=. -Dsonar.host.url=http://http://192.168.1.109:9000/'
                     }
                 }
             }
