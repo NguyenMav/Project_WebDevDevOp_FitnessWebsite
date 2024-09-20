@@ -45,7 +45,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube1') {
-                    sh 'npx sonar-scanner'
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
             }
         }
