@@ -24,8 +24,10 @@ pipeline {
                     nodejs(nodeJSInstallationName: 'NodeJs') {
                         sh "npm install" 
                         withSonarQubeEnv('SonarQube') { 
+                            // Install sonar-scanner
                             sh "npm install sonar-scanner"
-                            sh "npm run sonar"
+                            // Run SonarScanner with verbose logging
+                            sh "npm run sonar -Dsonar.verbose=true"
                         }
                     }
                 }
