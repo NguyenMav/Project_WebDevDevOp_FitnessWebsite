@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+         SCANNER_HOME = tool 'SonarQubeScanner';    
+    }
+
     stages {
         stage('Build') {
             agent {
@@ -42,10 +46,6 @@ pipeline {
                     image 'node:18-alpine'
                     reuseNode true
                 }
-            environment {
-                SCANNER_HOME = tool 'SonarQubeScanner';    
-            }
-            
             steps {
                 
                 withSonarQubeEnv('SonarQube') {
