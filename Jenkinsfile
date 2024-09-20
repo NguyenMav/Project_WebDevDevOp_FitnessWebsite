@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh 'npm test'
+                    sh 'sh 'docker run --rm mynodeapp:latest npm test''
                 }
             }
         }
