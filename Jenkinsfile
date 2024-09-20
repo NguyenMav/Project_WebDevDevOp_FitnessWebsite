@@ -16,12 +16,11 @@ pipeline {
             agent {
                 docker {
                     image 'node:18-alpine'
-                    reuseNode true
                 }
             }
             steps {
                 sh 'echo "Stage 2: Tests"'
-
+                sh 'npm --version'
             }
         }
         stage('Code Analysis') {
