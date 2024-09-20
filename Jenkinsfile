@@ -21,8 +21,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    // Run ESLint for code quality analysis
-                    sh 'npm run lint'
+                    sh 'docker run --rm -e SONAR_HOST_URL=http://192.168.1.109:9000 -e SONAR_LOGIN=sqp_880a75b2016974c6dca406576c0b5af8482dfec8 -v $(pwd):/usr/src --workdir=/usr/src sonarsource/sonar-scanner-cli'
                 }
             }
         }
