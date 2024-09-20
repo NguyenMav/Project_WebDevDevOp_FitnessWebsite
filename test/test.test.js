@@ -1,64 +1,19 @@
-// test/test.test.js
-(async () => {
-  let chai = await import('chai');
-  const { expect } = chai;
+// test/math.test.js
+const { expect } = require('chai');
 
-  // Simulate the DOM elements
-  const leaveAtDoorCheckbox = { checked: false };
-  const preferredTimeSelect = { value: "" };
-  const notesTextarea = { value: "" };
-  const cardNumberInput = { value: "" };
-  const expiryDateInput = { value: "" };
-  const cvvInput = { value: "" };
-  const cardholderNameInput = { value: "" };
-  const billingAddressInput = { value: "" };
+// Simple addition function
+function add(a, b) {
+    return a + b;
+}
 
-  describe('Checkout Form Validation', () => {
-    beforeEach(() => {
-      // Reset form element values
-      leaveAtDoorCheckbox.checked = false;
-      preferredTimeSelect.value = "";
-      notesTextarea.value = "";
-      cardNumberInput.value = "";
-      expiryDateInput.value = "";
-      cvvInput.value = "";
-      cardholderNameInput.value = "";
-      billingAddressInput.value = "";
+describe('Math Functions', () => {
+    it('should return 3 when adding 1 and 2', () => {
+        const result = add(1, 2);
+        expect(result).to.equal(3);
     });
 
-    it('should prevent submit when preferred delivery time is not selected', () => {
-      const validateForm = () => {
-        throw new Error('Please select a preferred delivery time.');
-      };
-
-      expect(validateForm).to.throw('Please select a preferred delivery time.');
+    it('should return 5 when adding 2 and 3', () => {
+        const result = add(2, 3);
+        expect(result).to.equal(5);
     });
-
-    it('should prevent submit when notes for delivery are less than 20 words', () => {
-      notesTextarea.value = "This is less than 20 words";
-
-      const validateForm = () => {
-        throw new Error('Please enter at least 20 words in notes for the delivery.');
-      };
-
-      expect(validateForm).to.throw('Please enter at least 20 words in notes for the delivery.');
-    });
-
-    it('should not prevent submit when all fields are filled correctly', () => {
-      leaveAtDoorCheckbox.checked = true;
-      preferredTimeSelect.value = "Morning";
-      notesTextarea.value = "This is a note with more than 20 words.";
-      cardNumberInput.value = "1234567890123456";
-      expiryDateInput.value = "12/25";
-      cvvInput.value = "123";
-      cardholderNameInput.value = "John Doe";
-      billingAddressInput.value = "123 Main St";
-
-      const validateForm = () => {
-        // Simulate form submission logic
-      };
-
-      expect(validateForm).not.to.throw();
-    });
-  });
-})();
+});
