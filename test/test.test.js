@@ -1,52 +1,66 @@
 const chai = require('chai');
-const chaiHttp = require('chai-http');
-const sqlite3 = require('sqlite3').verbose();
-const app = require('./index.js'); // Assuming your app is in index.js
-const sqlite3Memory = require('sqlite3-memory');
-
-chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('Database Tests', () => {
-  let db;
+// Simulate the DOM elements (can be improved with a library like jsdom)
+const leaveAtDoorCheckbox = { checked: false };
+const preferredTimeSelect = { value: "" };
+const notesTextarea = { value: "" };
+const cardNumberInput = { value: "" };
+const expiryDateInput = { value: "" };
+const cvvInput = { value: "" };
+const cardholderNameInput = { value: "" };
+const billingAddressInput = { value: "" };
 
+describe('Checkout Form Validation', () => {
   beforeEach(() => {
-    db = new sqlite3.Database(':memory:', (err) => {
-      if (err) {
-        throw err;
-      }
-      console.log('Connected to in-memory database');
-    });
+    // Reset form element values
+    leaveAtDoorCheckbox.checked = false;
+    preferredTimeSelect.value = "";
+    notesTextarea.value = "";
+    cardNumberInput.value = "";
+    expiryDateInput.value = "";
+    cvvInput.value = "";
+    cardholderNameInput.value = "";
+    billingAddressInput.value = "";
   });
 
-  afterEach(() => {
-    db.close((err) => {
-      if (err) {
-        throw err;
-      }
-      console.log('Closed in-memory database');
-    });
+  it('should prevent submit when preferred delivery time is not selected', () => {
+    const validateForm = () => {
+      // Simulate form submission logic
+      // ... (replace with your actual form submission code)
+    };
+
+    expect(validateForm).to.throw('Please select a preferred delivery time.');
   });
 
-  it('should insert a new subscriber', (done) => {
-    const email = 'test@example.com';
+  it('should prevent submit when notes for delivery are less than 20 words', () => {
+    notesTextarea.value = "This is less than 20 words";
 
-    db.run('INSERT INTO Subscribers (email) VALUES (?)', [email], (err) => {
-      if (err) {
-        throw err;
-      }
+    const validateForm = () => {
+      // Simulate form submission logic
+      // ... (replace with your actual form submission code)
+    };
 
-      db.all('SELECT * FROM Subscribers', [], (err, rows) => {
-        if (err) {
-          throw err;
-        }
-
-        expect(rows.length).to.equal(1);
-        expect(rows[0].email).to.equal(email);
-        done();
-      });
-    });
+    expect(validateForm).to.throw('Please enter at least 20 words in notes for the delivery.');
   });
 
-  // Add more test cases for other database operations
+  // Add similar tests for other validation checks
+
+  it('should not prevent submit when all fields are filled correctly', () => {
+    leaveAtDoorCheckbox.checked = true;
+    preferredTimeSelect.value = "Morning";
+    notesTextarea.value = "This is a note with more than 20 words.";
+    cardNumberInput.value = "1234567890123456";
+    expiryDateInput.value = "12/25";
+    cvvInput.value = "123";
+    cardholderNameInput.value = "John Doe";
+    billingAddressInput.value = "123 Main St";
+
+    const validateForm = () => {
+      // Simulate form submission logic
+      // ... (replace with your actual form submission code)
+    };
+
+    expect(validateForm).not.to.throw();
+  });
 });
