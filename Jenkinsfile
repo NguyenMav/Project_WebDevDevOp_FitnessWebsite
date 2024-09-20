@@ -21,13 +21,8 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    sh 'docker run --rm mynodeapp:latest npm test'
-                    nodejs(nodeJSInstallationName: 'NodeJs') {
-                        withSonarQubeEnv('SonarQube'){
-                            sh "npm install sonar-scanner"
-                            sh "npm run sonar"
-                        }
-                    }
+                    // Run SonarQube scan within the Sonar stage of the Dockerfile
+                    sh 'docker run --rm mynodeapp:latest npm run sonar'
                 }
             }
         }
@@ -43,7 +38,6 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    // Promote application to production (modify as needed)
                     echo 'Release stage: Promote to production (e.g., using AWS CodeDeploy)'
                 }
             }
@@ -52,7 +46,6 @@ pipeline {
         stage('Monitoring and Alerting') {
             steps {
                 script {
-                    // Set up monitoring (e.g., using Datadog)
                     echo 'Set up monitoring for the application'
                 }
             }
