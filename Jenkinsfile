@@ -35,23 +35,16 @@ pipeline {
                 }
             }
         }
-
-        stage('Code Quality Analysis') {
+        stage("build & SonarQube analysis") {
             agent {
                 docker {
-                    image 'sonarsource/sonar-scanner-cli:4.6'
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
             steps {
-                withSonarQubeEnv('SonarQube2') {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=task6.2HD \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=${SONAR_HOST_URL} \
-                        -Dsonar.login=${SONAR_AUTH_TOKEN}
-                    '''
+                withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
                 }
             }
         }
