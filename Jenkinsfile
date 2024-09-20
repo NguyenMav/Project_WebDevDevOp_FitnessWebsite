@@ -22,9 +22,8 @@ pipeline {
             steps {
                 script {
                     nodejs(nodeJSInstallationName: 'NodeJs') {
-                        withSonarQubeEnv('SonarQube') {
-                            sh "npm install sonar-scanner"
-                            sh "npm run sonar" 
+                        withSonarQubeEnv('SonarQube Server') {  // Make sure 'SonarQube Server' matches the Jenkins configuration
+                            sh "npm run sonar"
                         }
                     }
                 }
@@ -42,6 +41,7 @@ pipeline {
         stage('Release') {
             steps {
                 script {
+                    // Promote application to production (modify as needed)
                     echo 'Release stage: Promote to production (e.g., using AWS CodeDeploy)'
                 }
             }
@@ -50,9 +50,18 @@ pipeline {
         stage('Monitoring and Alerting') {
             steps {
                 script {
+                    // Set up monitoring (e.g., using Datadog)
                     echo 'Set up monitoring for the application'
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up Docker containers
+            sh 'docker stop mynodeapp || true'
+            sh 'docker rm mynodeapp || true'
         }
     }
 }

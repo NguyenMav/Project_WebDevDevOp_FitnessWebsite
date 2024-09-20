@@ -1,25 +1,20 @@
-# Stage 1: Build
-FROM node:14 AS build
+# Use the official Node.js image as a parent image
+FROM node:14
 
+# Set the working directory in the container
 WORKDIR /app
+
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
+
+# Copy the rest of the application code
 COPY . .
 
-# Stage 2: SonarQube Scan
-FROM node:14 AS sonar
-
-WORKDIR /app
-COPY --from=build /app .
-
-# Install sonar-scanner
-RUN npm install -g sonar-scanner
-
-# Stage 3: Production
-FROM node:14 AS production
-
-WORKDIR /app
-COPY --from=build /app .
-
+# Expose the application port
 EXPOSE 3000
+
+# Command to run the application
 CMD ["npm", "start"]
