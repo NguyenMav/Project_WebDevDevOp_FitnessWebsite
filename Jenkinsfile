@@ -21,15 +21,12 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    sh '''
-                        docker run --rm --network host \
-                        -v $WORKSPACE:/app \
-                        mynodeapp:latest /bin/sh -c "sonar-scanner \
-                        -Dsonar.projectKey=test \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://192.168.1.109:9000/ \
-                        -Dsonar.login=squ_11d673050fde432bbb8abaaf9e6138f7839bd1a4"
-                    '''
+                    nodejs(nodeJSInstallationName: 'NodeJs') {
+                        withSonarQubeEnv('SonarQube') {
+                            sh "npm install sonar-scanner"
+                            sh "npm run sonar" 
+                        }
+                    }
                 }
             }
         }
