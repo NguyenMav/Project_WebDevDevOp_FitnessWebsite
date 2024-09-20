@@ -44,15 +44,8 @@ pipeline {
                 }
             }
             steps {
-                withSonarQubeEnv('SonarQube2') {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=Task6.2HD\
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=$http://192.168.1.109:9000/ \
-                        -Dsonar.login=$sqp_b0c0dd500f96652dafd8d073d2776b7d8e48dc18
-                    '''
-                }
+                                withSonarQubeEnv('SonarQube2') {
+                    sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
             }
         }
     }
