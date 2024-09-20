@@ -42,10 +42,14 @@ pipeline {
                     image 'node:18-alpine'
                     reuseNode true
                 }
+            environment {
+                SCANNER_HOME = tool 'SonarQubeScanner';    
             }
+            
             steps {
-                withSonarQubeEnv('SonarQube1') {
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:6.2.0.4584:sonar'
+                
+                withSonarQubeEnv('SonarQube') {
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
                 }
             }
         }
