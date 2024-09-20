@@ -21,6 +21,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
+                    sh 'docker run --rm mynodeapp:latest npm test'
                     nodejs(nodeJSInstallationName: 'NodeJs') {
                         withSonarQubeEnv('SonarQube'){
                             sh "npm install sonar-scanner"
