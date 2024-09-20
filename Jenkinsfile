@@ -1,75 +1,67 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS 22.9.0'  // NodeJS installation configured in Jenkins
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Set Permissions') {
-            steps {
-                // Set permissions for any necessary files or directories
-                sh 'chmod -R +x node_modules/.bin'
-            }
-        }
-
         stage('Build') {
             steps {
-                // Build the project
-                sh 'npm run build'
-            }
-        }
-
-        stage('Code analysis') {
-            steps {
                 script {
-                    // Try to run the linting step, but don't fail the pipeline if it fails
-                    try {
-                        sh 'npm run lint'
-                    } catch (err) {
-                        echo 'Linting failed, but continuing with the pipeline...'
-                    }
+                    // Install dependencies and build the Docker image
+                    sh 'docker build -t mynodeapp:latest .'
                 }
             }
         }
-
-        stage('Unit Test') {
+        
+        stage('Test') {
             steps {
-                // Run the unit tests using Mocha
-                sh 'npx mocha'
+                script {
+                    // Run automated tests using Jest or your preferred framework
+                    sh 'npm test'
+                }
             }
         }
-
+        
+        stage('Code Quality Analysis') {
+            steps {
+                script {
+                    // Run ESLint for code quality analysis
+                    sh 'npm run lint'
+                }
+            }
+        }
+        
         stage('Deploy') {
             steps {
-                // Deploy the application (modify the deploy command as needed)
-                sh 'npm run start --port=3000 &'
+                script {
+                    // Deploy to Docker container
+                    sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
+                }
+            }
+        }
+        
+        stage('Release') {
+            steps {
+                script {
+                    // Promote application to production (modify as needed)
+                    echo 'Release stage: Promote to production (e.g., using AWS CodeDeploy)'
+                }
+            }
+        }
+        
+        stage('Monitoring and Alerting') {
+            steps {
+                script {
+                    // Set up monitoring (e.g., using Datadog)
+                    echo 'Set up monitoring for the application'
+                }
             }
         }
     }
 
     post {
         always {
-            // Clean up workspace after pipeline execution
-            deleteDir()
-        }
-        success {
-            echo 'Build, Test, and Deploy stages completed successfully!'
-        }
-        failure {
-            echo 'Build failed. Check logs for details.'
+            // Clean up Docker containers
+            sh 'docker stop mynodeapp || true'
+            sh 'docker rm mynodeapp || true'
         }
     }
 }
