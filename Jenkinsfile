@@ -57,12 +57,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up Docker containers
-            sh 'docker stop mynodeapp || true'
-            sh 'docker rm mynodeapp || true'
-        }
-    }
 }
