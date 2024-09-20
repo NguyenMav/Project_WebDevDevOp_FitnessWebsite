@@ -21,16 +21,15 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    // Save the Docker image as a tar archive
-                    sh 'docker save mynodeapp:latest -o mynodeapp.tar'
-
-                    // Extract the tar archive to a temporary directory
-                    sh 'mkdir extracted_image && tar -xf mynodeapp.tar -C extracted_image'
-
-                    // Run SonarQube scanner on the extracted files
-                    withSonarQubeEnv('SonarQube') {
-                        sh "sonar-scanner -Dsonar.projectKey=mynodeapp -Dsonar.sources=extracted_image -Dsonar.projectKey=test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.109:9000/ -Dsonar.login=squ_11d673050fde432bbb8abaaf9e6138f7839bd1a4"
-                    }
+                    sh '''
+                        docker run --rm --network host \
+                        -v $WORKSPACE:/app \
+                        mynodeapp:latest sonar-scanner \
+                        -Dsonar.projectKey=mynodeapp \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://192.168.1.109:9000/ \
+                        -Dsonar.login=squ_11d673050fde432bbb8abaaf9e6138f7839bd1a4
+                    '''
                 }
             }
         }
