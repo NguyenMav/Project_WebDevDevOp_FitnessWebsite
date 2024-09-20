@@ -9,20 +9,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Stage 1: Build'
-                sh 'npm install'
-                sh 'npm run build'
+                sh 'echo "Stage 1: Build"'
             }
         }
         stage('Tests') {
-            agent { // Moving the agent block to the right level
+            agent {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
                 }
+            }
             steps {
-                echo 'Stage 2: Tests'
-                // Add your test commands here
+                sh 'echo "Stage 2: Tests"'
+
             }
         }
         stage('Code Analysis') {
