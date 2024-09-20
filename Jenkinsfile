@@ -47,10 +47,10 @@ pipeline {
                 withSonarQubeEnv('SonarQube1') {
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=my-nodejs-project \
+                        -Dsonar.projectKey=task6.2HD\
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=${SONAR_HOST_URL} \
-                        -Dsonar.login=${SONAR_AUTH_TOKEN}
+                        -Dsonar.host.url=$http://localhost:9000/ \
+                        -Dsonar.login=$sqp_b0c0dd500f96652dafd8d073d2776b7d8e48dc18
                     '''
                 }
             }
