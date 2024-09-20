@@ -15,9 +15,6 @@ COPY --from=build /app .
 # Install sonar-scanner
 RUN npm install -g sonar-scanner
 
-# Make sure sonar-scanner has execute permissions
-RUN chmod +x /usr/local/bin/sonar-scanner
-
 # Stage 3: Production
 FROM node:14 AS production
 
