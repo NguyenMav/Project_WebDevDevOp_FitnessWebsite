@@ -22,11 +22,8 @@ WORKDIR /app
 # Copy the application code from the build stage
 COPY --from=build /app .
 
-# Install sonar-scanner
-RUN npm install sonar-scanner
-
-# Set permissions for sonar-scanner
-RUN chmod +x /app/node_modules/sonar-scanner/bin/sonar-scanner
+# Install sonar-scanner globally to ensure proper access
+RUN npm install -g sonar-scanner
 
 # Stage 3: Production Image
 FROM node:14 AS production
