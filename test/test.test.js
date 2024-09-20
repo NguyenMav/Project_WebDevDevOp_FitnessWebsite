@@ -1,13 +1,8 @@
-// Use dynamic import for chai
-let chai;
-let expect;
+// test/test.test.js
+(async () => {
+  let chai = await import('chai');
+  const { expect } = chai;
 
-const loadChai = async () => {
-  chai = await import('chai');
-  expect = chai.expect;
-};
-
-const runTests = () => {
   // Simulate the DOM elements
   const leaveAtDoorCheckbox = { checked: false };
   const preferredTimeSelect = { value: "" };
@@ -65,14 +60,5 @@ const runTests = () => {
 
       expect(validateForm).not.to.throw();
     });
-
-    after(() => {
-      console.log('All tests completed successfully!');
-    });
   });
-};
-
-// Load Chai and then run the tests
-loadChai().then(runTests).catch((error) => {
-  console.error('Failed to load chai:', error);
-});
+})();
