@@ -31,6 +31,19 @@ pipeline {
                     npm test 
                 '''
             }
+            post {
+                always {
+                    junit '**/test-results.txt' 
+                }
+
+                success {
+                    echo 'All tests passed successfully.'
+                }
+
+                failure {
+                    echo 'Some tests failed. Check the logs above for details.'
+                }
+            }
         }
     }
 }
