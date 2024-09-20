@@ -44,7 +44,7 @@ pipeline {
                 }
             }
             steps {
-                withSonarQubeEnv('SonarQube1') {
+                withSonarQubeEnv('SonarQube2') {
                     sh '''
                         sonar-scanner \
                         -Dsonar.projectKey=task6.2HD \
