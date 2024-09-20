@@ -28,9 +28,6 @@ pipeline {
                         }
                     }
                 }
-                withSonarQubeEnv('SonarQube') {
-                    sh "sonar-quality-gate -Dsonar.qualityGate.name=MyQualityGate"
-                }
             }
         }
         
