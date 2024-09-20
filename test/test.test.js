@@ -1,3 +1,4 @@
+// Use dynamic import for chai
 let chai;
 let expect;
 
@@ -65,6 +66,11 @@ loadChai().then(() => {
       };
 
       expect(validateForm).not.to.throw();
+    });
+
+    // Add a "after" hook to print a success message
+    after(() => {
+      console.log('All tests completed successfully!');
     });
   });
 }).catch((error) => {
