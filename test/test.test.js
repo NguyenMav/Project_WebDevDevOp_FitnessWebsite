@@ -1,4 +1,4 @@
-# Testing pipeling
+// Testing pipeling
 
 const assert = require('assert');
 
