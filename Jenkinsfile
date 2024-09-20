@@ -22,6 +22,7 @@ pipeline {
             steps {
                 script {
                     nodejs(nodeJSInstallationName: 'NodeJs') {
+                        sh "npm install" 
                         withSonarQubeEnv('SonarQube Server') {  // Make sure 'SonarQube Server' matches the Jenkins configuration
                             sh "npm run sonar"
                         }
