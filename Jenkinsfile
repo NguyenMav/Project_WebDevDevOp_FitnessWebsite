@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Install dependencies and build the Docker image
                     sh 'docker build -t mynodeapp:latest .'
                 }
             }
@@ -14,7 +13,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Run automated tests using Jest or your preferred framework
                     sh 'npm test'
                 }
             }
