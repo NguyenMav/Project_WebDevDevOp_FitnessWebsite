@@ -9,18 +9,26 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'echo "Stage 1: Build"'
+                sh '''
+                    echo "Stage 1: Build"
+                    ls -la
+                    touch container-no.txt
+                '''
             }
         }
         stage('Tests') {
             agent {
                 docker {
                     image 'node:18-alpine'
+                    reuseNode true
                 }
             }
             steps {
-                sh 'echo "Stage 2: Tests"'
-                sh 'npm --version'
+                sh '''
+                    echo "Stage 2: Tests"
+                    ls -la
+                    touch container-yes.txt
+                '''
             }
         }
         stage('Code Analysis') {
