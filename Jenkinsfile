@@ -44,8 +44,9 @@ pipeline {
                 }
             }
             steps {
-                                withSonarQubeEnv('SonarQube2') {
+                withSonarQubeEnv('SonarQube2') {
                     sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                }
             }
         }
     }
