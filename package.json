@@ -4,7 +4,7 @@
   "description": "SIT774 personal website",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter ./custom-reporter.js",
+    "test": "mocha",
     "build": "echo 'Running build script'"
   },
   "author": "Maverick Nguyen",
