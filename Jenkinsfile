@@ -43,7 +43,7 @@ pipeline {
                 }
             }
             steps {
-                withSonarQubeEnv('My SonarQube Server') {
+                withSonarQubeEnv('jenkins-sonar') {
                 sh 'mvn clean package sonar:sonar'
                 }
             }
