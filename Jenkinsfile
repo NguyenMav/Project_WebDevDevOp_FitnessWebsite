@@ -20,9 +20,6 @@ pipeline {
                     image 'node:18-alpine'
                     reuseNode true
                 }
-                environment {
-                    HOME = '.'
-            }
             steps {
                 echo 'Stage 2: Tests'
                 // Add your test commands here
