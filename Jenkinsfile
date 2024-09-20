@@ -21,14 +21,9 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    sh '''
-                    docker run --rm \
-                        -e SONAR_HOST_URL=http://192.168.1.109:9000 \
-                        -e SONAR_LOGIN=sqp_4eb127acc5df34ca8f919317288697931face948 \
-                        -v $(pwd):/usr/src \
-                        --workdir=/usr/src \
-                        sonarsource/sonar-scanner-cli
-                    '''
+                    nodejs(nodeJSInstallation: 'NodeJs'{
+                    sh "npm install" 
+                    }
                 }
             }
         }
