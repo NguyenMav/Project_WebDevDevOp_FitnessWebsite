@@ -21,7 +21,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                    nodejs(nodeJSInstallation: 'NodeJs'{
+                    nodejs(nodeJSInstallationName: 'NodeJs') {
                     sh "npm install" 
                     }
                 }
