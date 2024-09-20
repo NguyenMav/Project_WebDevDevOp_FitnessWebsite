@@ -4,7 +4,7 @@
   "description": "SIT774 personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "build": "echo 'Running build script'"
   },
   "author": "Maverick Nguyen",
@@ -12,5 +12,9 @@
   "dependencies": {
     "express": "^4.19.2",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3"
   }
 }
