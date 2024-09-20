@@ -45,7 +45,6 @@ peline {
             steps {
                 echo 'Stage 7: Monitoring and Alerting'
                 // Add monitoring/alerting commands here
-            }
         }
     }
 }
