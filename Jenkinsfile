@@ -44,12 +44,12 @@ pipeline {
                 }
             }
             steps {
-                withSonarQubeEnv('SonarQube1') {
+                withSonarQubeEnv('SonarQube2') {
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=task6.2HD\
+                        -Dsonar.projectKey=Task6.2HD\
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=$http://localhost:9000/ \
+                        -Dsonar.host.url=$http://192.168.1.109:9000/ \
                         -Dsonar.login=$sqp_b0c0dd500f96652dafd8d073d2776b7d8e48dc18
                     '''
                 }
