@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        NETLIFY_AUTH_TOKEN = 'nfp_LxhX6BkXcvy87uLJNBm59HGEW9r4bYvN2db0'
     }
     
     stages {
@@ -51,12 +51,10 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    sh 'npm install -g netlify-cli'
-                    sh 'netlify login --auth NETLIFY_AUTH_TOKEN"' 
-                    def netlifyDir = "${env.WORKSPACE}/netlify_deploy"
-                    sh "mkdir -p ${netlifyDir}"
-                    sh "docker run --rm mynodeapp:latest cp -r /app/public_html/. ${netlifyDir}/"
-                    sh "netlify deploy --prod --dir=${netlifyDir}"
+                    sh '''
+                    npm install netlify-cli
+                    node_modules/.bin/netlify --version
+                    '''
                 }
             }
         }
