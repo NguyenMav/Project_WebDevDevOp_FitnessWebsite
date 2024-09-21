@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+RUN apt-get update && apt-get install -y jq
 
 # Copy the rest of the application code
 COPY . .
