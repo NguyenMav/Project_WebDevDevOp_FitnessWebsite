@@ -52,8 +52,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify --version
+                    echo 'release'
                     '''
                 }
             }
@@ -64,6 +63,17 @@ pipeline {
                 script {
                     echo 'Set up monitoring for the application'
                 }
+            }
+        }
+        post {
+            always {
+                deleteDir()
+            }
+            success {
+                echo 'Pipeline Completed'
+            }
+            failure {
+                echo 'Pipeline Failed'
             }
         }
     }
