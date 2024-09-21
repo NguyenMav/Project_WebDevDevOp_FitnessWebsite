@@ -2,7 +2,7 @@
 
 This is a personal practice project for web development where I try to apply everything I learned in my university web development unit. This project used **HTML, CSS, JavaScript, NodeJS, SQLite**
 
-The package.JSON and package-lock.JSON can be deleted if you want, as long as you run the 'npm init'.
+This website also involves CI/CD pipeline with Jenkins using Docker, along with SonarQube integration.
 
 **Instructions**
 
