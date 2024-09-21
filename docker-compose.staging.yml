@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mynodeapp-staging
+    ports:
+      - "4000:3000"
+    environment:
+      - NODE_ENV=staging
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - sqlite_data:/app/data
+
+volumes:
+  sqlite_data:
