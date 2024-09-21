@@ -37,9 +37,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'mkdir -p ./static_files'
-                    sh 'docker run --rm mynodeapp:latest cp -r /app/public_html/. ./static_files'
-                    sh 'ls -l ./static_files'
                     sh 'docker stop mynodeapp || true'
                     sh 'docker rm mynodeapp || true'
                     sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
@@ -50,10 +47,17 @@ pipeline {
         stage('Extract Static Files') {
             steps {
                 script {
-                    sh 'ls -l ./static_files'
+                    // Specify the real directory for static files
+                    def staticFilesDir = '/path/to/your/static_files' // Change this to your desired path
+                    // Clean the directory
+                    sh "rm -rf ${staticFilesDir}/*"
+                    // Copy static files from the Docker container
+                    sh "docker run --rm mynodeapp:latest cp -r /app/public_html/. ${staticFilesDir}"
+                    // Verify extraction
+                    sh "ls -l ${staticFilesDir}"
                 }
             }
-        }
+        }    
         
         stage('Release') {
             steps {
