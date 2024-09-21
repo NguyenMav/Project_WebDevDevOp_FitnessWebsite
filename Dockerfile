@@ -8,8 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
-RUN apt-get update && apt-get install -y jq
+RUN npm ci && apt-get update && apt-get install -y jq && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy the rest of the application code
 COPY . .
