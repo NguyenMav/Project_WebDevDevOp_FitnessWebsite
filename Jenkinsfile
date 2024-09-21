@@ -48,7 +48,9 @@ pipeline {
             steps {
                 script {
                     // Specify the real directory for static files
-                    def staticFilesDir = '/path/to/your/static_files' // Change this to your desired path
+                    def staticFilesDir = "${env.WORKSPACE}/static_files" // Use Jenkins workspace path
+                    // Create the directory if it doesn't exist
+                    sh "mkdir -p ${staticFilesDir}"
                     // Clean the directory
                     sh "rm -rf ${staticFilesDir}/*"
                     // Copy static files from the Docker container
@@ -57,7 +59,7 @@ pipeline {
                     sh "ls -l ${staticFilesDir}"
                 }
             }
-        }    
+        } 
         
         stage('Release') {
             steps {
