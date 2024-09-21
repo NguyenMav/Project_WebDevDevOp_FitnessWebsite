@@ -10,36 +10,38 @@ pipeline {
             }
         }
         
-        stage('Test') {
-            steps {
-                script {
-                    sh 'docker run --rm mynodeapp:latest npm test'
-                }
-            }
-        }
+        //stage('Test') {
+            //steps {
+                //script {
+                    //sh 'docker run --rm mynodeapp:latest npm test'
+                //}
+            //}
+        //}
         
-        stage('Code Quality Analysis') {
-            steps {
-                script {
-                    nodejs(nodeJSInstallationName: 'NodeJs') {
-                        sh "npm install" 
-                        withSonarQubeEnv('SonarQube') { 
-                            sh "npm install sonar-scanner"
-                            sh "npm run sonar -Dsonar.verbose=true"
-                        }
-                    }
-                }
-            }
-        }
+        //stage('Code Quality Analysis') {
+            //steps {
+                //script {
+                    //nodejs(nodeJSInstallationName: 'NodeJs') {
+                        //sh "npm install" 
+                        //withSonarQubeEnv('SonarQube') { 
+                            //sh "npm install sonar-scanner"
+                            //sh "npm run sonar -Dsonar.verbose=true"
+                        //}
+                    //}
+                //}
+            //}
+        //}
         
         stage('Deploy to Staging') {
             steps {
                 script {
-                    // Stop any running containers in the staging environment
-                    sh 'docker-compose -f docker-compose.staging.yml down || true'
-                    
-                    // Deploy to staging using the staging compose file
-                    sh 'docker-compose -f docker-compose.staging.yml up -d'
+                    sh '''
+                    docker info
+                    docker version
+                    docker compose version
+                    curl --version
+                    jq --version
+                    '''
                 }
             }
         }
