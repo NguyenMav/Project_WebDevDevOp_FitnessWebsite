@@ -1,18 +1,18 @@
-version: '3'
+version: '3.8'
+
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: mynodeapp
     ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
+      - "4000:3000"
     volumes:
-      - .:/app
-      - /app/node_modules
-      - sqlite_data:/app/data
+      - ./data:/app/data  # To persist database file
+    depends_on:
+      - db
 
-volumes:
-  sqlite_data:
+  db:
+    image: nouchka/sqlite3  # Use an appropriate image for SQLite
+    volumes:
+      - ./data:/data  # Persist database
