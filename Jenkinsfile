@@ -24,9 +24,7 @@ pipeline {
                     nodejs(nodeJSInstallationName: 'NodeJs') {
                         sh "npm install" 
                         withSonarQubeEnv('SonarQube') { 
-                            // Install sonar-scanner
                             sh "npm install sonar-scanner"
-                            // Run SonarScanner with verbose logging
                             sh "npm run sonar -Dsonar.verbose=true"
                         }
                     }
@@ -34,21 +32,22 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
-            steps {
-                script {
-                    sh 'docker stop mynodeapp || true'
-                    sh 'docker rm mynodeapp || true'
-                    sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
-                }
-            }
-        }
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    // Stop any running containers in the staging environment
+                    sh 'docker-compose -f docker-compose.staging.yml down || true'
+                    
+                    // Deploy to staging using the staging compose file
+                    sh 'docker-compose -f docker-compose.staging.yml up -d'
+                }
+            }
+        }
         
         stage('Release') {
             steps {
                 script {
-                    // Promote application to production (modify as needed)
-                    echo 'Release stage: Promote to production (e.g., using AWS CodeDeploy)'
+                    echo 'Promote to production (e.g., AWS CodeDeploy or any other method)'
                 }
             }
         }
@@ -56,7 +55,6 @@ pipeline {
         stage('Monitoring and Alerting') {
             steps {
                 script {
-                    // Set up monitoring (e.g., using Datadog)
                     echo 'Set up monitoring for the application'
                 }
             }
