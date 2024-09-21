@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "build": "echo 'Running build script'",
-    "sonar": "sonar-scanner -Dsonar.projectKey=mynodeapp -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.109:9000/ -Dsonar.login=squ_11d673050fde432bbb8abaaf9e6138f7839bd1a4"
+    "sonar": "sonar-scanner -Dsonar.projectKey=mynodeapp -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.109:9000/ -Dsonar.login=squ_11d673050fde432bbb8abaaf9e6138f7839bd1a4",
+    "start": "node index.js"
   },
   "author": "Maverick Nguyen",
   "license": "ISC",
