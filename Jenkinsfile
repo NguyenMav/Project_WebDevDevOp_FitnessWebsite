@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+    }
+    
     stages {
         stage('Build') {
             steps {
@@ -43,28 +47,16 @@ pipeline {
                 }
             }
         }
-
-        stage('Extract Static Files') {
-            steps {
-                script {
-                    // Specify the real directory for static files
-                    def staticFilesDir = "${env.WORKSPACE}/static_files" // Use Jenkins workspace path
-                    // Create the directory if it doesn't exist
-                    sh "mkdir -p ${staticFilesDir}"
-                    // Clean the directory
-                    sh "rm -rf ${staticFilesDir}/*"
-                    // Copy static files from the Docker container
-                    sh "docker run --rm mynodeapp:latest cp -r /app/public_html/. ${staticFilesDir}"
-                    // Verify extraction
-                    sh "ls -l ${staticFilesDir}"
-                }
-            }
-        } 
         
         stage('Release') {
             steps {
                 script {
-                    echo 'Promote to production (e.g., AWS CodeDeploy or any other method)'
+                    sh 'npm install -g netlify-cli'
+                    sh 'netlify login --auth NETLIFY_AUTH_TOKEN"' 
+                    def netlifyDir = "${env.WORKSPACE}/netlify_deploy"
+                    sh "mkdir -p ${netlifyDir}"
+                    sh "docker run --rm mynodeapp:latest cp -r /app/public_html/. ${netlifyDir}/"
+                    sh "netlify deploy --prod --dir=${netlifyDir}"
                 }
             }
         }
