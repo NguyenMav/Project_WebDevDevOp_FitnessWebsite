@@ -34,15 +34,15 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
-            steps {
-                script {
-                    sh 'docker stop mynodeapp || true'
-                    sh 'docker rm mynodeapp || true'
-                    sh 'docker run -p 4000:3000 --name mynodeapp mynodeapp:latest'
-                }
-            }
-        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'docker stop mynodeapp || true'
+                    sh 'docker rm mynodeapp || true'
+                    sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
+                }
+            }
+        }
         
         stage('Release') {
             steps {
