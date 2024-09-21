@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NETLIFY_AUTH_TOKEN = 'nfp_LxhX6BkXcvy87uLJNBm59HGEW9r4bYvN2db0'
-    }
-    
     stages {
         stage('Build') {
             steps {
@@ -13,7 +9,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test') {
             steps {
                 script {
@@ -26,38 +22,38 @@ pipeline {
             steps {
                 script {
                     nodejs(nodeJSInstallationName: 'NodeJs') {
-                        sh "npm install" 
-                        withSonarQubeEnv('SonarQube') { 
-                            // Install sonar-scanner
+                        sh "npm install"
+                        withSonarQubeEnv('SonarQube') {
                             sh "npm install sonar-scanner"
-                            // Run SonarScanner with verbose logging
                             sh "npm run sonar -Dsonar.verbose=true"
                         }
                     }
                 }
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker stop mynodeapp || true'
-                    sh 'docker rm mynodeapp || true'
-                    sh 'docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest'
-                }
-            }
-        }
-        
-        stage('Release') {
-            steps {
-                script {
                     sh '''
-                    echo 'release'
+                        docker stop mynodeapp || true
+                        docker rm mynodeapp || true
+                        docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest
                     '''
                 }
             }
         }
-        
+
+        stage('Release') {
+            steps {
+                script {
+                    sh '''
+                        echo 'Release step executed'
+                    '''
+                }
+            }
+        }
+
         stage('Monitoring and Alerting') {
             steps {
                 script {
@@ -65,16 +61,17 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                deleteDir()
-            }
-            success {
-                echo 'Pipeline Completed'
-            }
-            failure {
-                echo 'Pipeline Failed'
-            }
+    }
+
+    post {
+        always {
+            deleteDir()
+        }
+        success {
+            echo 'Pipeline completed successfully'
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
