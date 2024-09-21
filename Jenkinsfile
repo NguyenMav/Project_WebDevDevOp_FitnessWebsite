@@ -39,7 +39,7 @@ pipeline {
                 script {
                     sh 'docker stop mynodeapp || true'
                     sh 'docker rm mynodeapp || true'
-                    sh 'docker run -p 3000:3000 --name mynodeapp mynodeapp:latest'
+                    sh 'docker run -p 4000:3000 --name mynodeapp mynodeapp:latest'
                 }
             }
         }
