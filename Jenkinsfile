@@ -51,6 +51,7 @@ pipeline {
                     sh 'mkdir -p ./static_files'
                     // Copy static files from the Docker container
                     sh 'docker run --rm mynodeapp:latest cp -r /app/public_html ./static_files'
+                    sh 'ls -l ./static_files'
                 }
             }
         }
