@@ -43,6 +43,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Extract Static Files') {
+            steps {
+                script {
+                    // Create a temporary directory to store static files
+                    sh 'mkdir -p ./static_files'
+                    // Copy static files from the Docker container
+                    sh 'docker run --rm mynodeapp:latest cp -r /app/public_html ./static_files'
+                }
+            }
+        }
         
         stage('Release') {
             steps {
