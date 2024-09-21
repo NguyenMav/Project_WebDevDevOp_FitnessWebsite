@@ -38,7 +38,7 @@ pipeline {
                     sh '''
                         docker stop mynodeapp || true
                         docker rm mynodeapp || true
-                        docker run -d -p 3000:3000 --name mynodeapp mynodeapp:latest
+                        docker run -p 127.0.0.1:3000:3000 --name mynodeapp mynodeapp:latest
                     '''
                 }
             }
